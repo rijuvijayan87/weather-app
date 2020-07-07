@@ -47,7 +47,8 @@ app.get('/weather', (req, res) => {
     });
   }
 
-  geocode(req.query.location, (error, { latitude, longitude, place }) => {
+  geocode(req.query.location, (error, { latitude, longitude, place } = {}) => {
+    //default values {} are provided as it'll fail otherwise during destructuring
     if (error) {
       return res.send({ error });
     }
@@ -64,12 +65,6 @@ app.get('/weather', (req, res) => {
       });
     });
   });
-
-  // res.send({
-  //   forecast: 'It is a nice sunny day',
-  //   city: 'Wellington',
-  //   location: req.query.location,
-  // });
 });
 
 app.get('/products', (req, res) => {
